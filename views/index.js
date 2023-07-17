@@ -30,7 +30,18 @@ function Todos() {
         let inputName = document.getElementById("todoNameInputBox").value;
         let inputDesc = document.getElementById("todoDescInputBox").value;
         postNewTodo(inputName, inputDesc);
-    }    
+    }
+    
+    this.viewTodos = function() {
+        let table = document.getElementById("viewTodosTable");
+        let newRow = table.insertRow(table.rows.length);
+        let cell1 = newRow.insertCell(0);
+        let cell2 = newRow.insertCell(1);
+        let cell3 = newRow.insertCell(2);
+        cell1.innerText = "id";
+        cell2.innerText = "name";
+        cell3.innerText = "description";
+    }
     
     
 }

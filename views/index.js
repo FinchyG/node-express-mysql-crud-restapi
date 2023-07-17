@@ -4,6 +4,9 @@
 // Declare a Todos object for use by the HTML view
 var controller;
 
+// Variable to store HTML table object
+var table = document.getElementById("viewTodosTable");
+
 window.addEventListener("load", () => {
   console.log("page loaded");
   // Create the Todos object for use by the HTML view
@@ -33,7 +36,10 @@ function Todos() {
     }
     
     this.viewTodos = function() {
-        let table = document.getElementById("viewTodosTable");
+        
+        // remove currently displayed todos from table
+        clearTable();
+        
         let newRow = table.insertRow(table.rows.length);
         let cell1 = newRow.insertCell(0);
         let cell2 = newRow.insertCell(1);
@@ -43,5 +49,11 @@ function Todos() {
         cell3.innerText = "description";
     }
     
+    // HELPER FUNCTIONS
     
+    function clearTable() {
+        while(table.rows.length > 0) {
+            table.deleteRow(-1);
+        }       
+    }
 }

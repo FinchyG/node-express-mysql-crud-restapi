@@ -44,9 +44,13 @@ function Todos() {
         let cell1 = newRow.insertCell(0);
         let cell2 = newRow.insertCell(1);
         let cell3 = newRow.insertCell(2);
+        let cell4 = newRow.insertCell(3);
+        let cell5 = newRow.insertCell(4);
         cell1.innerText = "id";
         cell2.innerText = "name";
         cell3.innerText = "description";
+        cell4.innerHTML = "<button>Delete</button>";
+        cell5.innerHTML = "<button>Edit</button>";
     }
     
     // HELPER FUNCTIONS

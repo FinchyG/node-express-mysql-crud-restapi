@@ -23,7 +23,7 @@ function Todos() {
     function postNewTodo(inputName, inputDesc) {
         
         function onSuccess() {
-            console.log("Todo added.")
+            console.log("Todo added.");
         }
         $.ajax('http://localhost:4000/todos', { type: "POST", data: { "name": inputName, "description": inputDesc}, 
             success: onSuccess },
@@ -39,6 +39,10 @@ function Todos() {
     };
     
     this.viewTodos = function() {
+        
+        function onSuccess(data) {
+            console.log(data);
+        }        
         
         // remove currently displayed todos from table
         clearTable();
@@ -58,6 +62,8 @@ function Todos() {
             cell4.innerHTML = "<button onclick='controller.deleteTodo(this)'>Delete</button>";
             cell5.innerHTML = "<button onclick='controller.saveEdit(this)'>Save edit</button>";
         }
+        
+        $.ajax('http://localhost:4000/todos', { type: "GET", success: onSuccess });
     };
     
     this.saveEdit = function(clicked_object) {

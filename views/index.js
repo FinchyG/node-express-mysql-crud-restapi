@@ -6,6 +6,9 @@ var controller;
 
 // Variable to store HTML table object
 var table = document.getElementById("viewTodosTable");
+var data = {
+    "id": 23
+};
 
 window.addEventListener("load", () => {
   console.log("page loaded");
@@ -49,9 +52,23 @@ function Todos() {
         cell1.innerText = "id";
         cell2.innerText = "name";
         cell3.innerText = "description";
-        cell4.innerHTML = "<button>Delete</button>";
-        cell5.innerHTML = "<button>Edit</button>";
+        cell4.innerHTML = "<button onclick='controller.deleteTodo(this)'>Delete</button>";
+        cell5.innerHTML = "<button onclick='controller.saveEdit(this)'>Save edit</button>";
     }
+    
+    this.saveEdit = function(clicked_object) {
+        clicked_object.setAttribute("name", data.id);
+        clicked_object.setAttribute("id", "s1");
+        alert(clicked_object.getAttribute("name"));
+        alert(clicked_object.getAttribute("id"));
+    }
+    
+    this.deleteTodo = function(clicked_object) {
+        clicked_object.setAttribute("name", data.id);
+        clicked_object.setAttribute("id", "d1");
+        alert(clicked_object.getAttribute("name"));
+        alert(clicked_object.getAttribute("id"));
+    }    
     
     // HELPER FUNCTIONS
     

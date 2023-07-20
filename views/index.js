@@ -4,11 +4,11 @@
 // Declare a Todos object for use by the HTML view
 var controller;
 
+// Variable to store API base URL
+var BASE_URL = 'http://localhost:4000/todos/';
+
 // Variable to store HTML table object
 var viewTodosTable = document.getElementById("viewTodosTable");
-var data = {
-    "id": 23
-};
 
 window.addEventListener("load", () => {
   console.log("page loaded");
@@ -25,7 +25,7 @@ function Todos() {
         function onSuccess() {
             console.log("Todo added.");
         }
-        $.ajax('http://localhost:4000/todos', { type: "POST", data: { "name": inputName, "description": inputDesc}, 
+        $.ajax(BASE_URL, { type: "POST", data: { "name": inputName, "description": inputDesc}, 
             success: onSuccess },
         );        
     }    
@@ -63,18 +63,18 @@ function Todos() {
             cell5.innerHTML = "<button onclick='controller.saveEdit(this)'>Save edit</button>";
         }
         
-        $.ajax('http://localhost:4000/todos', { type: "GET", success: onSuccess });
+        $.ajax(BASE_URL, { type: "GET", success: onSuccess });
     };
     
     this.saveEdit = function(clicked_object) {
-        clicked_object.setAttribute("name", data.id);
+        clicked_object.setAttribute("name", "testName");
         clicked_object.setAttribute("id", "s1");
         alert(clicked_object.getAttribute("name"));
         alert(clicked_object.getAttribute("id"));
     };
     
     this.deleteTodo = function(clicked_object) {
-        clicked_object.setAttribute("name", data.id);
+        clicked_object.setAttribute("name", "testName");
         clicked_object.setAttribute("id", "d1");
         alert(clicked_object.getAttribute("name"));
         alert(clicked_object.getAttribute("id"));

@@ -47,8 +47,7 @@ function Todos() {
             // remove currently displayed todos from table
             clearTable();
 
-            console.log("data type is: " + typeof data);
-            let numOfRows = 3;
+            let numOfRows = data.length;
 
             for(let i = 0; i < numOfRows; i++) {
                 let newRow = viewTodosTable.insertRow(viewTodosTable.rows.length);

@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
     connection.query('select * from todos',
         function (error, results, fields) {
             if (error) throw error;
-            res.end(JSON.stringify(results));
+            res.json(results);
         });
 };
 
@@ -51,7 +51,7 @@ exports.findOne = (req, res) => {
         [req.params.id],
         function (error, results, fields) {
             if (error) throw error;
-            res.end(JSON.stringify(results));
+            res.json(results);
         });
 };
 
@@ -70,7 +70,7 @@ exports.update = (req, res) => {
         [req.body.name, req.body.description, req.params.id],
         function (error, results, fields) {
             if (error) throw error;
-            res.end(JSON.stringify(results));
+            res.json(results);
         });
 };
 

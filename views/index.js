@@ -28,29 +28,16 @@ function Todos() {
         $.ajax(BASE_URL, { type: "POST", data: { "name": inputName, "description": inputDesc}, 
             success: onSuccess },
         );        
-    }    
+    }
     
-    // CONTROLLER FUNCTIONS
-    
-    this.addTodo = function() {
-        let inputName = document.getElementById("todoNameInputBox").value;
-        let inputDesc = document.getElementById("todoDescInputBox").value;
-        postNewTodo(inputName, inputDesc);
-    };
-    
-    this.viewTodos = function() {
-        
+    function viewAllTodos() {
+ 
         function onSuccess(data) {
-            console.log(data);
-                
-        
+            
             // remove currently displayed todos from table
             clearTable();
 
             let numOfRows = data.length;
-            console.log("1st todo id: " + data[0].id);
-            console.log("1st todo name: " + data[0].name);
-            console.log("1st todo desc: " + data[0].description);
 
             for(let i = 0; i < numOfRows; i++) {
                 // create new Todo row
@@ -82,21 +69,56 @@ function Todos() {
             }
         }
         
-        $.ajax(BASE_URL, { type: "GET", success: onSuccess });
+        $.ajax(BASE_URL, { type: "GET", success: onSuccess });       
+    }
+    
+    function saveEditedTodo(clicked_object) {
+        
+        function onSuccess() {
+            viewAllTodos();
+        }
+        
+        let todoIdNum = clicked_object.getAttribute("id").substring(3);
+        let nameData = document.getElementById("name" + todoIdNum).value;
+        let descData = document.getElementById("desc" + todoIdNum).value;
+        
+        let URL = BASE_URL + todoIdNum;
+        $.ajax(URL, { type: "PUT", data: { "name": nameData, "description": descData}, 
+            success: onSuccess },
+        );       
+    }
+    
+    function deleteSelectedTodo(clicked_object) {
+        
+         function onSuccess() {
+            viewAllTodos();
+        }
+        
+        let todoIdNum = clicked_object.getAttribute("id").substring(3);
+        
+        let URL = BASE_URL + todoIdNum;
+        $.ajax(URL, { type: "DELETE", success: onSuccess },
+        );       
+    }
+    
+    // CONTROLLER FUNCTIONS
+    
+    this.addTodo = function() {
+        let inputName = document.getElementById("todoNameInputBox").value;
+        let inputDesc = document.getElementById("todoDescInputBox").value;
+        postNewTodo(inputName, inputDesc);
+    };
+    
+    this.viewTodos = function() {
+        viewAllTodos();
     };
     
     this.saveEdit = function(clicked_object) {
-        clicked_object.setAttribute("name", "testName");
-        clicked_object.setAttribute("id", "s1");
-        alert(clicked_object.getAttribute("name"));
-        alert(clicked_object.getAttribute("id"));
+        saveEditedTodo(clicked_object);
     };
     
     this.deleteTodo = function(clicked_object) {
-        clicked_object.setAttribute("name", "testName");
-        clicked_object.setAttribute("id", "d1");
-        alert(clicked_object.getAttribute("name"));
-        alert(clicked_object.getAttribute("id"));
+        deleteSelectedTodo(clicked_object);
     };    
     
     // HELPER FUNCTIONS

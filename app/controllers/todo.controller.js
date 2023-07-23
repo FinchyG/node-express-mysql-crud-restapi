@@ -76,7 +76,6 @@ exports.update = (req, res) => {
 
 // Delete a todo with the specified id in the request
 exports.delete = (req, res) => {
-    console.log(req.body);
     connection.query('DELETE FROM `todos` WHERE `Id`=?', 
         [req.params.id], function (error, results, fields) {
             if (error) throw error;

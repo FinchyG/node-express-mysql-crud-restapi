@@ -48,17 +48,31 @@ function Todos() {
             clearTable();
 
             let numOfRows = data.length;
+            console.log("1st todo id: " + data[0].id);
+            console.log("1st todo name: " + data[0].name);
+            console.log("1st todo desc: " + data[0].description);
 
             for(let i = 0; i < numOfRows; i++) {
+                // create new Todo row
                 let newRow = viewTodosTable.insertRow(viewTodosTable.rows.length);
                 let cell1 = newRow.insertCell(0);
                 let cell2 = newRow.insertCell(1);
                 let cell3 = newRow.insertCell(2);
                 let cell4 = newRow.insertCell(3);
-                cell1.innerText = "name";
-                cell2.innerText = "description";
+                
+                // create elements for new Todo row
+                cell1.innerHTML = "<input type='text' id='todoName' />";
+                cell2.innerHTML = "<input type='text' id='todoDesc' />";
                 cell3.innerHTML = "<button onclick='controller.deleteTodo(this)'>Delete</button>";
                 cell4.innerHTML = "<button onclick='controller.saveEdit(this)'>Save edit</button>";
+                
+                // set name content for Todo
+                document.getElementById("todoName").setAttribute("value", `${data[i].name}`);
+                document.getElementById("todoName").setAttribute("id", `name${data[i].id}`);
+                
+                // set description content for Todo
+                document.getElementById("todoDesc").setAttribute("value", `${data[i].description}`);
+                document.getElementById("todoDesc").setAttribute("id", `desc${data[i].id}`);
             }
         }
         

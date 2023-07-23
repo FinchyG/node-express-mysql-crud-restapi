@@ -63,16 +63,22 @@ function Todos() {
                 // create elements for new Todo row
                 cell1.innerHTML = "<input type='text' id='todoName' />";
                 cell2.innerHTML = "<input type='text' id='todoDesc' />";
-                cell3.innerHTML = "<button onclick='controller.deleteTodo(this)'>Delete</button>";
-                cell4.innerHTML = "<button onclick='controller.saveEdit(this)'>Save edit</button>";
+                cell3.innerHTML = "<button id='delBut' onclick='controller.deleteTodo(this)'>Delete</button>";
+                cell4.innerHTML = "<button id='savBut' onclick='controller.saveEdit(this)'>Save edit</button>";
                 
-                // set name content for Todo
+                // set name content for todo
                 document.getElementById("todoName").setAttribute("value", `${data[i].name}`);
                 document.getElementById("todoName").setAttribute("id", `name${data[i].id}`);
                 
-                // set description content for Todo
+                // set description content for todo
                 document.getElementById("todoDesc").setAttribute("value", `${data[i].description}`);
                 document.getElementById("todoDesc").setAttribute("id", `desc${data[i].id}`);
+                
+                // set unique id for todo delete button
+                document.getElementById("delBut").setAttribute("id", `del${data[i].id}`);
+                
+                // set unique id for todo save edit button
+                document.getElementById("savBut").setAttribute("id", `sav${data[i].id}`);
             }
         }
         

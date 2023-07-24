@@ -23,8 +23,13 @@ function Todos() {
     function postNewTodo(inputName, inputDesc) {
         
         function onSuccess() {
-            console.log("Todo added.");
+            // after adding new todo to database display it in todo table and
+            // clear name and description input boxes for next todo
+            viewAllTodos();
+            document.getElementById("todoNameInputBox").value = "";
+            document.getElementById("todoDescInputBox").value = "";
         }
+        
         $.ajax(BASE_URL, { type: "POST", data: { "name": inputName, "description": inputDesc}, 
             success: onSuccess },
         );        

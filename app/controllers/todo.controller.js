@@ -44,17 +44,6 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single todo with a id
-exports.findOne = (req, res) => {
-
-    connection.query('select * from todos where Id=?',
-        [req.params.id],
-        function (error, results, fields) {
-            if (error) throw error;
-            res.json(results);
-        });
-};
-
 // Update a todo identified by the id in the request
 exports.update = (req, res) => {
     // Validate Request
@@ -64,8 +53,6 @@ exports.update = (req, res) => {
         });
     }
 
-    console.log(req.params.id);
-    console.log(req.body.description);
     connection.query('UPDATE `todos` SET `name`=?,`description`=? where `id`=?',
         [req.body.name, req.body.description, req.params.id],
         function (error, results, fields) {

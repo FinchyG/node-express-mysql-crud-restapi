@@ -48,6 +48,17 @@ exports.findAll = (req, res) => {
           });
 };
 
+// Find a single todo with a id
+exports.findOne = (req, res) => {
+
+    connection.query('select * from todos where Id=?',
+        [req.params.id],
+        function (error, results, fields) {
+            if (error) throw error;
+            res.json(results);
+        });
+};
+
 // Update a todo identified by the id in the request
 exports.update = (req, res) => {
   // Validate Request

@@ -7,6 +7,9 @@ module.exports = (app) => {
   // Retrieve all todos
   app.get('/todos', todos.findAll);
 
+  // Retrieve a single todo by id
+  app.get('/todos/:id', todos.findOne);
+
   // Update a Todo with id
   app.put('/todos/:id', todos.update);
 
